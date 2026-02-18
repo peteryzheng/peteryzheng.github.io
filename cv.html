@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV | Youyun (Peter) Zheng</title>
+  <meta name="description" content="Curriculum vitae snapshot and links for Youyun (Peter) Zheng.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://peteryzheng.github.io/cv.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="cv">
+  <div class="background-overlay" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="wordmark" href="index.html">Youyun (Peter) Zheng</a>
+    <nav id="site-nav" class="site-nav" aria-label="Primary">
+      <a href="index.html" data-page-link="home">Home</a>
+      <a href="research.html" data-page-link="research">Research</a>
+      <a href="projects.html" data-page-link="projects">Projects</a>
+      <a href="cv.html" data-page-link="cv">CV</a>
+    </nav>
+    <div class="header-actions">
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        type="button"
+        aria-label="Switch to light mode"
+        aria-pressed="false"
+      >
+        Dark
+      </button>
+      <button id="nav-toggle" class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    </div>
+  </header>
+
+  <main class="page page-cv">
+    <section class="page-intro">
+      <p class="eyebrow">Curriculum Vitae</p>
+      <h1>Formal record</h1>
+      <p class="lede">Snapshot documents and profile links.</p>
+    </section>
+
+    <section class="section-block cv-shell">
+      <article class="cv-card">
+        <h2 id="cv-label"></h2>
+        <p id="cv-note"></p>
+        <p id="cv-updated" class="muted"></p>
+        <a id="cv-link" class="button-link" target="_blank" rel="noopener">Open PDF</a>
+      </article>
+
+      <article class="cv-sidecar">
+        <p class="eyebrow">Profile Links</p>
+        <div id="hero-links" class="chip-row"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for GitHub Pages. Last content refresh: <span class="last-updated"></span>.</p>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

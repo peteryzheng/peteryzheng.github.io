@@ -12,15 +12,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="home">
   <div class="background-overlay" aria-hidden="true"></div>
+
   <header class="site-header">
-    <a class="wordmark" href="#home">Youyun (Peter) Zheng</a>
+    <a class="wordmark" href="index.html">Youyun (Peter) Zheng</a>
     <nav id="site-nav" class="site-nav" aria-label="Primary">
-      <a href="#home">Home</a>
-      <a href="#research">Research</a>
-      <a href="#projects">Projects</a>
-      <a href="#cv">CV</a>
+      <a href="index.html" data-page-link="home">Home</a>
+      <a href="research.html" data-page-link="research">Research</a>
+      <a href="projects.html" data-page-link="projects">Projects</a>
+      <a href="cv.html" data-page-link="cv">CV</a>
     </nav>
     <div class="header-actions">
       <button
@@ -36,64 +37,48 @@
     </div>
   </header>
 
-  <main>
-    <section id="home" class="section hero reveal">
-      <div class="hero-layout">
-        <div class="hero-copy">
-          <p class="eyebrow" id="hero-role"></p>
-          <h1 id="hero-name"></h1>
-          <p class="hero-tagline" id="hero-tagline"></p>
-          <p class="hero-summary" id="hero-summary"></p>
-          <div class="chip-row" id="hero-links"></div>
-        </div>
-        <figure class="hero-photo-wrap">
-          <a class="hero-photo-link" href="blackjack.html" aria-label="Open Blackjack page">
-            <img
-              id="hero-photo"
-              class="hero-photo"
-              src="assets/images/headshot.jpg"
-              alt="Headshot of Youyun (Peter) Zheng"
-              loading="eager"
-              decoding="async"
-            >
-          </a>
-        </figure>
+  <main class="page page-home">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow" id="hero-role"></p>
+        <h1 id="hero-name"></h1>
+        <p class="hero-tagline" id="hero-tagline"></p>
+        <p class="hero-summary" id="hero-summary"></p>
+        <div class="chip-row" id="hero-links"></div>
       </div>
+      <figure class="hero-photo-wrap">
+        <a class="hero-photo-link" href="blackjack.html" aria-label="Open Blackjack page">
+          <img
+            id="hero-photo"
+            class="hero-photo"
+            src="assets/images/headshot.jpg"
+            alt="Headshot of Youyun (Peter) Zheng"
+            loading="eager"
+            decoding="async"
+          >
+        </a>
+      </figure>
     </section>
 
-    <section id="research" class="section reveal">
-      <div class="section-head">
+    <section class="split-preview">
+      <article class="preview-block">
         <p class="eyebrow">Research Focus</p>
-        <h2>Where I am currently pushing</h2>
-      </div>
-      <ul id="research-focus-list" class="focus-list"></ul>
-    </section>
+        <h2>Current directions</h2>
+        <ul id="home-research-preview" class="focus-list compact"></ul>
+        <a class="inline-link" href="research.html">Open full research page</a>
+      </article>
 
-    <section id="projects" class="section reveal">
-      <div class="section-head">
-        <p class="eyebrow">PhD Projects</p>
-        <h2>Current scientific questions</h2>
-      </div>
-      <div id="projects-grid" class="projects-grid"></div>
-    </section>
-
-    <section id="cv" class="section reveal">
-      <div class="section-head">
-        <p class="eyebrow">CV</p>
-        <h2>Formal record</h2>
-      </div>
-      <article class="cv-card">
-        <h3 id="cv-label"></h3>
-        <p id="cv-note"></p>
-        <p id="cv-updated" class="muted"></p>
-        <a id="cv-link" class="button-link" target="_blank" rel="noopener">Open PDF</a>
+      <article class="preview-block">
+        <p class="eyebrow">Projects</p>
+        <h2>Active scientific programs</h2>
+        <ul id="home-project-preview" class="project-preview-list"></ul>
+        <a class="inline-link" href="projects.html">Open full projects page</a>
       </article>
     </section>
-
   </main>
 
   <footer class="site-footer">
-    <p>Built for GitHub Pages. Last content refresh: <span id="last-updated"></span>.</p>
+    <p>Built for GitHub Pages. Last content refresh: <span class="last-updated"></span>.</p>
   </footer>
 
   <script type="module" src="main.js"></script>

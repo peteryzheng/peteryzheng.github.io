@@ -30,7 +30,7 @@ jobs:
       - name: Build deploy artifact
         run: |
           mkdir -p _site/content _site/assets/docs _site/assets/images
-          cp index.html styles.css main.js blackjack.html blackjack.css blackjack.js robots.txt sitemap.xml google4a2ae9a8af640161.html _site/
+          cp index.html research.html projects.html cv.html styles.css main.js blackjack.html blackjack.css blackjack.js robots.txt sitemap.xml google4a2ae9a8af640161.html _site/
           cp content/site.json _site/content/site.json
           cp assets/docs/Youyun_Zheng_CV_S23.pdf _site/assets/docs/Youyun_Zheng_CV_S23.pdf
           cp assets/images/headshot.jpg _site/assets/images/headshot.jpg

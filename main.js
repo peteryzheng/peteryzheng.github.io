@@ -21,6 +21,12 @@ function setText(id, value) {
   }
 }
 
+function setLastUpdated(value) {
+  document.querySelectorAll(".last-updated").forEach((node) => {
+    node.textContent = value || "";
+  });
+}
+
 function getSavedTheme() {
   try {
     return localStorage.getItem(THEME_STORAGE_KEY);
@@ -33,7 +39,7 @@ function saveTheme(theme) {
   try {
     localStorage.setItem(THEME_STORAGE_KEY, theme);
   } catch (error) {
-    // Ignore storage failures (private mode, disabled storage, etc.).
+    // Ignore storage failures in restricted browser environments.
   }
 }
 
@@ -47,8 +53,7 @@ function getInitialTheme() {
 }
 
 function applyTheme(theme) {
-  const root = document.documentElement;
-  root.setAttribute("data-theme", theme);
+  document.documentElement.setAttribute("data-theme", theme);
 
   const toggle = document.getElementById("theme-toggle");
   if (!toggle) {
@@ -56,7 +61,7 @@ function applyTheme(theme) {
   }
 
   const isLight = theme === THEME_LIGHT;
-  toggle.textContent = isLight ? "Light" : "Dark";
+  toggle.textContent = isLight ? "Dark" : "Light";
   toggle.setAttribute("aria-pressed", String(isLight));
   toggle.setAttribute(
     "aria-label",
@@ -80,17 +85,61 @@ function wireThemeToggle() {
   });
 }
 
-function renderHeroPhoto(headshot) {
-  const image = document.getElementById("hero-photo");
-  if (!image || !headshot) {
+function wireMobileNav() {
+  const body = document.body;
+  const toggle = document.getElementById("nav-toggle");
+  const navLinks = document.querySelectorAll(".site-nav a");
+  if (!toggle) {
     return;
   }
 
-  if (headshot.src) {
-    image.src = headshot.src;
+  toggle.addEventListener("click", () => {
+    const next = !body.classList.contains("nav-open");
+    body.classList.toggle("nav-open", next);
+    toggle.setAttribute("aria-expanded", String(next));
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      body.classList.remove("nav-open");
+      toggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+function wireActiveNav() {
+  const currentPage = document.body.dataset.page;
+  if (!currentPage) {
+    return;
   }
-  if (headshot.alt) {
-    image.alt = headshot.alt;
+
+  const currentLink = document.querySelector(`[data-page-link="${currentPage}"]`);
+  if (!currentLink) {
+    return;
+  }
+
+  currentLink.classList.add(NAV_ACTIVE_CLASS);
+  currentLink.setAttribute("aria-current", "page");
+}
+
+function renderHero(profile) {
+  if (!document.getElementById("hero-name")) {
+    return;
+  }
+
+  setText("hero-role", profile.role);
+  setText("hero-name", profile.name);
+  setText("hero-tagline", profile.tagline);
+  setText("hero-summary", profile.summary);
+
+  const image = document.getElementById("hero-photo");
+  if (image && profile.headshot) {
+    if (profile.headshot.src) {
+      image.src = profile.headshot.src;
+    }
+    if (profile.headshot.alt) {
+      image.alt = profile.headshot.alt;
+    }
   }
 }
 
@@ -105,11 +154,11 @@ function renderChipLinks(containerId, links) {
     if (!link || !link.href || !link.label) {
       return;
     }
+
     const anchor = createNode("a");
     anchor.href = link.href;
     anchor.textContent = link.label;
-    const isExternal = link.href.startsWith("http");
-    if (isExternal) {
+    if (link.href.startsWith("http")) {
       anchor.target = "_blank";
       anchor.rel = "noopener";
     }
@@ -117,16 +166,46 @@ function renderChipLinks(containerId, links) {
   });
 }
 
-function renderResearchFocus(items) {
-  const list = document.getElementById("research-focus-list");
+function renderList(containerId, items) {
+  const list = document.getElementById(containerId);
   if (!list) {
     return;
   }
 
   list.innerHTML = "";
   items.forEach((item) => {
-    const li = createNode("li", null, item);
-    list.appendChild(li);
+    list.appendChild(createNode("li", null, item));
+  });
+}
+
+function renderHomeProjectPreview(projects) {
+  const list = document.getElementById("home-project-preview");
+  if (!list) {
+    return;
+  }
+
+  list.innerHTML = "";
+  projects.slice(0, 2).forEach((project) => {
+    const item = createNode("li");
+    item.appendChild(createNode("strong", null, project.title));
+    item.appendChild(createNode("span", null, `${project.theme} | ${project.status}`));
+    list.appendChild(item);
+  });
+}
+
+function renderTimeline(timeline) {
+  const list = document.getElementById("timeline-list");
+  if (!list) {
+    return;
+  }
+
+  list.innerHTML = "";
+  timeline.forEach((entry) => {
+    const item = createNode("li", "timeline-item");
+    item.appendChild(createNode("span", "period", entry.period));
+    item.appendChild(createNode("h3", null, entry.title));
+    item.appendChild(createNode("p", null, entry.description));
+    list.appendChild(item);
   });
 }
 
@@ -135,8 +214,8 @@ function renderProjects(projects) {
   if (!grid) {
     return;
   }
-  grid.innerHTML = "";
 
+  grid.innerHTML = "";
   projects.forEach((project) => {
     const card = createNode("article", "project-card");
     card.appendChild(createNode("p", "eyebrow", project.theme));
@@ -182,101 +261,29 @@ function renderCv(cv) {
   }
 }
 
-function applySectionObservers() {
-  const sections = document.querySelectorAll("main section[id]");
-  const navLinks = Array.from(document.querySelectorAll(".site-nav a"));
-  const byHash = new Map(navLinks.map((link) => [link.getAttribute("href"), link]));
-
-  const activeObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
-        navLinks.forEach((link) => link.classList.remove(NAV_ACTIVE_CLASS));
-        const match = byHash.get(`#${entry.target.id}`);
-        if (match) {
-          match.classList.add(NAV_ACTIVE_CLASS);
-        }
-      });
-    },
-    { rootMargin: "-35% 0px -50% 0px", threshold: 0.1 }
-  );
-
-  sections.forEach((section) => activeObserver.observe(section));
-}
-
-function applyRevealObserver() {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
-    return;
-  }
-
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.16 }
-  );
-
-  document.querySelectorAll(".reveal").forEach((section) => revealObserver.observe(section));
-}
-
-function wireMobileNav() {
-  const body = document.body;
-  const toggle = document.getElementById("nav-toggle");
-  const navLinks = document.querySelectorAll(".site-nav a");
-  if (!toggle) {
-    return;
-  }
-
-  toggle.addEventListener("click", () => {
-    const next = !body.classList.contains("nav-open");
-    body.classList.toggle("nav-open", next);
-    toggle.setAttribute("aria-expanded", String(next));
-  });
-
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      body.classList.remove("nav-open");
-      toggle.setAttribute("aria-expanded", "false");
-    });
-  });
-}
-
 async function init() {
-  try {
-    wireThemeToggle();
+  wireThemeToggle();
+  wireMobileNav();
+  wireActiveNav();
 
+  try {
     const response = await fetch("content/site.json", { cache: "no-store" });
     const data = await response.json();
 
-    setText("hero-role", data.profile.role);
-    setText("hero-name", data.profile.name);
-    setText("hero-tagline", data.profile.tagline);
-    setText("hero-summary", data.profile.summary);
-    renderHeroPhoto(data.profile.headshot);
-    setText("last-updated", data.last_updated);
-
+    setLastUpdated(data.last_updated);
+    renderHero(data.profile);
     renderChipLinks("hero-links", data.profile.quick_links);
-    renderResearchFocus(data.research_focus);
+    renderList("home-research-preview", data.research_focus.slice(0, 2));
+    renderList("research-focus-list", data.research_focus);
+    renderHomeProjectPreview(data.research_projects);
     renderProjects(data.research_projects);
+    renderTimeline(data.timeline || []);
     renderCv(data.cv);
-
-    applySectionObservers();
-    applyRevealObserver();
-    wireMobileNav();
   } catch (error) {
-    // Fallback to visible message if content JSON fails to load.
     const root = document.querySelector("main");
     if (root) {
       root.innerHTML =
-        "<section class='section'><h2>Unable to load content.</h2><p>Please check that <code>content/site.json</code> is available.</p></section>";
+        "<section class='section-block'><h2>Unable to load content.</h2><p>Please check that <code>content/site.json</code> is available.</p></section>";
     }
   }
 }
