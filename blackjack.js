@@ -108,6 +108,21 @@ function updateControls() {
   restartBtn.disabled = isEjected;
 }
 
+function maybeTriggerCasinoRules() {
+  if (gameState === "ejected" || gameState === "player_turn") {
+    return false;
+  }
+  if (balance <= 0) {
+    triggerEjection("bankrupt");
+    return true;
+  }
+  if (balance >= WIN_CAP) {
+    triggerEjection("winner");
+    return true;
+  }
+  return false;
+}
+
 function render() {
   balanceEl.textContent = currency(balance);
   roundBetEl.textContent = currency(currentBet);
@@ -121,6 +136,7 @@ function render() {
   playerTotalEl.textContent = playerHand.length ? `(${handValue(playerHand)})` : "";
 
   updateControls();
+  maybeTriggerCasinoRules();
 }
 
 function settleRound(result, message) {
@@ -139,15 +155,6 @@ function settleRound(result, message) {
 
   currentBet = 0;
   render();
-
-  if (balance <= 0) {
-    triggerEjection("bankrupt");
-    return;
-  }
-
-  if (balance >= WIN_CAP) {
-    triggerEjection("winner");
-  }
 }
 
 function triggerEjection(mode) {
@@ -283,19 +290,12 @@ function handleKeyShortcuts(event) {
     return;
   }
 
-  const target = event.target;
-  const isTyping =
-    target &&
-    (target.tagName === "INPUT" ||
-      target.tagName === "TEXTAREA" ||
-      target.isContentEditable);
-
-  if (isTyping && event.key !== "Enter") {
+  if (event.metaKey || event.ctrlKey || event.altKey) {
     return;
   }
 
   const key = event.key.toLowerCase();
-  if (key === "d" || (key === "enter" && document.activeElement === betInputEl)) {
+  if (key === "d" || key === "enter") {
     event.preventDefault();
     startRound();
     return;
