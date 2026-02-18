@@ -187,8 +187,21 @@ function triggerEjection(mode) {
     clearTimeout(ejectionTimer);
   }
   ejectionTimer = setTimeout(() => {
-    window.location.href = "index.html";
+    attemptExitWithoutRedirect(isBankrupt);
   }, EJECTION_DELAY_MS);
+}
+
+function attemptExitWithoutRedirect(isBankrupt) {
+  // Try to close this tab/window. Some browsers will block this.
+  window.close();
+
+  // If closing is blocked, keep the overlay and show manual exit guidance.
+  setStatus(
+    isBankrupt
+      ? "Bankroll depleted. Please close this tab."
+      : "Casino rule triggered. Please close this tab.",
+    isBankrupt ? "lose" : "win"
+  );
 }
 
 function dealerTurn() {
