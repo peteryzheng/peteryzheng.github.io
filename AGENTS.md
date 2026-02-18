@@ -4,7 +4,7 @@
 This repository is a static GitHub Pages site (no framework build step).
 
 - `index.html`, `styles.css`, `main.js`: main personal site shell, styling, and rendering logic.
-- `blackjack.html`, `blackjack.css`, `blackjack.js`: standalone game page.
+- `blackjack.html`, `blackjack.css`, `blackjack.js`: standalone game page (intentionally not listed in sitemap).
 - `content/site.json`: primary content source (profile text, links, section data).
 - `assets/`: published static assets (for example `assets/images/`, `assets/docs/`).
 - `.github/workflows/deploy-pages.yml`: deployment workflow and allowlist of files pushed to Pages.
@@ -31,10 +31,10 @@ There is no formal test framework in this repo yet.
 
 - Run the syntax/JSON checks above before committing.
 - Manually verify desktop + mobile layout for UI changes.
-- For behavior changes (e.g., Blackjack rules), test core flows: start round, hit/stand, win/loss, redirect conditions.
+- For behavior changes, manually test all affected interactions and link/navigation paths.
 
 ## Commit & Pull Request Guidelines
-Git history uses short, imperative commit subjects (for example: `style upgrade`, `blackjack new rules`).
+Git history uses short, imperative commit subjects (for example: `style upgrade`, `site updates`).
 
 - Keep commit messages concise and action-focused.
 - PRs should include:
