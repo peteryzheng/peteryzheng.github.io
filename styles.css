@@ -1,16 +1,16 @@
 :root {
-  --bg-0: #090d14;
-  --bg-1: #111b2b;
-  --bg-2: #16263c;
-  --text-0: #edf2ff;
-  --text-1: #b9c7e3;
-  --line: rgba(166, 188, 227, 0.28);
-  --accent-emerald: #49c1ab;
+  --bg-0: #05080f;
+  --bg-1: #0b1424;
+  --bg-2: #101f35;
+  --text-0: #edf3ff;
+  --text-1: #b7c8e8;
+  --line: rgba(158, 185, 232, 0.2);
+  --accent-emerald: #45c9b3;
   --accent-sapphire: #4e7ef0;
-  --accent-ruby: #cf557b;
-  --accent-gold: #ddaf52;
-  --content-max: 1120px;
-  --radius: 18px;
+  --accent-ruby: #d35f87;
+  --accent-gold: #e1b45a;
+  --content-max: 1160px;
+  --radius: 24px;
 }
 
 *,
@@ -30,10 +30,10 @@ body {
   line-height: 1.6;
   color: var(--text-0);
   background:
-    radial-gradient(circle at 8% 12%, rgba(79, 193, 173, 0.17), transparent 42%),
-    radial-gradient(circle at 90% 14%, rgba(78, 126, 240, 0.18), transparent 36%),
-    radial-gradient(circle at 66% 84%, rgba(207, 85, 123, 0.14), transparent 32%),
-    linear-gradient(155deg, var(--bg-0), var(--bg-1) 48%, var(--bg-2));
+    radial-gradient(circle at 8% 10%, rgba(69, 201, 179, 0.2), transparent 38%),
+    radial-gradient(circle at 92% 18%, rgba(78, 126, 240, 0.24), transparent 34%),
+    radial-gradient(circle at 66% 84%, rgba(211, 95, 135, 0.16), transparent 36%),
+    linear-gradient(155deg, var(--bg-0), var(--bg-1) 50%, var(--bg-2));
 }
 
 .background-overlay {
@@ -53,11 +53,12 @@ body {
   top: 0;
   z-index: 30;
   width: min(var(--content-max), calc(100% - 2rem));
-  margin: 1rem auto 0;
+  margin: 1.1rem auto 0;
   border: 1px solid var(--line);
   border-radius: 999px;
   backdrop-filter: blur(14px);
-  background: rgba(10, 15, 26, 0.78);
+  background: rgba(7, 14, 24, 0.78);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,7 +68,7 @@ body {
 .wordmark {
   color: var(--text-0);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.02em;
 }
 
@@ -80,16 +81,17 @@ body {
 .site-nav a {
   color: var(--text-1);
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   border-radius: 999px;
-  padding: 0.48rem 0.8rem;
-  transition: background-color 180ms ease, color 180ms ease;
+  padding: 0.5rem 0.84rem;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .site-nav a:hover,
 .site-nav a:focus-visible {
   color: var(--text-0);
-  background: rgba(78, 126, 240, 0.2);
+  background: rgba(78, 126, 240, 0.24);
+  transform: translateY(-1px);
   outline: none;
 }
 
@@ -115,15 +117,18 @@ body {
 
 main {
   width: min(var(--content-max), calc(100% - 2rem));
-  margin: 1.2rem auto 0;
+  margin: 1.4rem auto 0;
   display: grid;
-  gap: 1.8rem;
+  gap: 1.2rem;
 }
 
 .section {
+  position: relative;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: linear-gradient(150deg, rgba(11, 18, 31, 0.9), rgba(16, 28, 44, 0.65));
+  background: linear-gradient(140deg, rgba(9, 17, 30, 0.9), rgba(16, 31, 52, 0.64));
+  backdrop-filter: blur(8px);
+  box-shadow: 0 22px 46px rgba(1, 6, 14, 0.34);
   padding: clamp(1.2rem, 2.2vw, 2rem);
 }
 
@@ -145,10 +150,11 @@ main {
 .hero h1 {
   margin: 0.4rem 0 0;
   max-width: 16ch;
-  font-family: "Fraunces", "Garamond", serif;
-  font-weight: 600;
-  line-height: 1.08;
-  font-size: clamp(2rem, 6vw, 4.1rem);
+  font-family: inherit;
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  font-size: clamp(2rem, 5.5vw, 3.75rem);
 }
 
 .hero-tagline {
@@ -194,10 +200,11 @@ main {
 
 .section-head h2 {
   margin: 0.25rem 0 0;
-  font-family: "Fraunces", "Garamond", serif;
-  font-weight: 500;
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   line-height: 1.2;
-  font-size: clamp(1.4rem, 2.4vw, 2.1rem);
+  font-size: clamp(1.35rem, 2.3vw, 2rem);
 }
 
 .chip-row {
@@ -212,26 +219,26 @@ main {
   border-radius: 999px;
   text-decoration: none;
   color: var(--text-0);
-  background: rgba(20, 33, 54, 0.78);
+  background: linear-gradient(140deg, rgba(18, 32, 53, 0.9), rgba(16, 28, 47, 0.66));
   padding: 0.48rem 0.84rem;
   font-weight: 600;
   font-size: 0.9rem;
+  transition: transform 180ms ease, background-color 180ms ease;
 }
 
 .chip-row a:hover,
 .chip-row a:focus-visible {
-  background: rgba(73, 193, 171, 0.22);
+  background: rgba(73, 193, 171, 0.24);
+  transform: translateY(-1px);
   outline: none;
 }
 
-.focus-list,
-.journey-list {
+.focus-list {
   margin: 1rem 0 0;
   padding-left: 1.2rem;
 }
 
-.focus-list li,
-.journey-list li {
+.focus-list li {
   margin-bottom: 0.74rem;
   color: var(--text-1);
 }
@@ -245,11 +252,17 @@ main {
 
 .project-card {
   border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 1rem;
-  background: rgba(13, 22, 37, 0.85);
+  border-radius: 18px;
+  padding: 1.05rem;
+  background: linear-gradient(150deg, rgba(12, 25, 42, 0.86), rgba(12, 22, 35, 0.7));
   position: relative;
   overflow: hidden;
+  transition: transform 220ms ease, border-color 220ms ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(158, 185, 232, 0.4);
 }
 
 .project-card::before {
@@ -263,8 +276,8 @@ main {
 
 .project-card h3 {
   margin: 0.2rem 0 0.35rem;
-  font-family: "Fraunces", "Garamond", serif;
-  font-weight: 500;
+  font-family: inherit;
+  font-weight: 700;
   line-height: 1.25;
   font-size: 1.32rem;
 }
@@ -298,9 +311,15 @@ main {
 
 .work-item {
   border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 0.9rem;
-  background: rgba(13, 23, 38, 0.75);
+  border-radius: 16px;
+  padding: 1rem;
+  background: rgba(12, 23, 38, 0.78);
+  transition: transform 220ms ease, border-color 220ms ease;
+}
+
+.work-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(158, 185, 232, 0.35);
 }
 
 .work-item h3 {
@@ -316,9 +335,9 @@ main {
 .cv-card {
   margin-top: 1rem;
   border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 1rem;
-  background: rgba(13, 22, 37, 0.75);
+  border-radius: 18px;
+  padding: 1.1rem;
+  background: rgba(12, 24, 39, 0.8);
 }
 
 .cv-card h3 {
@@ -334,15 +353,17 @@ main {
   display: inline-block;
   margin-top: 0.4rem;
   text-decoration: none;
-  color: #041120;
-  background: linear-gradient(120deg, var(--accent-emerald), #87dcd4);
-  padding: 0.56rem 0.92rem;
-  border-radius: 10px;
+  color: #051325;
+  background: linear-gradient(120deg, var(--accent-sapphire), var(--accent-emerald));
+  padding: 0.58rem 0.95rem;
+  border-radius: 12px;
   font-weight: 700;
+  transition: transform 180ms ease, filter 180ms ease;
 }
 
 .button-link:hover,
 .button-link:focus-visible {
+  transform: translateY(-1px);
   filter: brightness(1.07);
   outline: none;
 }

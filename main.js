@@ -131,22 +131,6 @@ function renderWork(workItems) {
   });
 }
 
-function renderJourney(entries) {
-  const list = document.getElementById("journey-list");
-  if (!list) {
-    return;
-  }
-  list.innerHTML = "";
-
-  entries.forEach((entry) => {
-    const li = createNode("li");
-    const title = createNode("strong", null, `${entry.period} - ${entry.title}`);
-    li.appendChild(title);
-    li.appendChild(createNode("p", null, entry.description));
-    list.appendChild(li);
-  });
-}
-
 function renderCv(cv) {
   setText("cv-label", cv.label);
   setText("cv-note", cv.note);
@@ -240,7 +224,6 @@ async function init() {
     renderResearchFocus(data.research_focus);
     renderProjects(data.research_projects);
     renderWork(data.selected_work);
-    renderJourney(data.timeline);
     renderCv(data.cv);
     renderChipLinks("contact-links", data.contact_links);
 
