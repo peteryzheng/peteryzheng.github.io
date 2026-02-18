@@ -1,0 +1,149 @@
+{
+  "profile": {
+    "name": "Youyun Zheng",
+    "role": "MD/PhD Student | Computational Oncology",
+    "tagline": "Building translational cancer genomics tools that connect mechanistic discovery to clinical decision-making.",
+    "summary": "I work at the intersection of cancer biology, genomics, and computation. My long-term goal is to practice as a physician-scientist in academic oncology while developing methods that improve diagnosis, treatment selection, and patient outcomes.",
+    "quick_links": [
+      {
+        "label": "Email",
+        "href": "mailto:youyunzheng@hms.harvard.edu"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/youyun-peter-zheng-970777106/"
+      },
+      {
+        "label": "GitHub [UPDATE_ME]",
+        "href": "https://github.com/UPDATE_ME"
+      },
+      {
+        "label": "X [UPDATE_ME]",
+        "href": "https://x.com/UPDATE_ME"
+      }
+    ]
+  },
+  "research_focus": [
+    "Structural variant junctional insertions: identifying mechanism-specific template configurations and testing links to TMEJ-related biology.",
+    "Spatial tumor biology in low-grade central nervous system tumors: resolving niche structure, developmental trajectories, and cell-cell communication.",
+    "Translational computational oncology: prioritizing analyses that can ultimately inform molecular diagnosis and therapeutic decision workflows."
+  ],
+  "research_projects": [
+    {
+      "theme": "Genomics and DNA Repair",
+      "title": "Origins of Structural Variant Junctional Insertions",
+      "period": "PhD, ongoing",
+      "status": "DAC update: July 2025",
+      "summary": "This project examines how templated junctional insertions arise in structural variants across somatic and germline settings, and whether template configuration patterns reflect distinct mutational mechanisms.",
+      "methods": [
+        "Template detection framework for breakpoint-proximal sequence configurations.",
+        "Alignment-score and enrichment analyses across structural variant classes.",
+        "Statistical association tests connecting insertion depletion/enrichment patterns with pathway-level hypotheses."
+      ],
+      "highlights": [
+        "Defined configuration categories with detectable enrichments by SV subtype.",
+        "Observed imperfect yet informative template matches in multiple contexts.",
+        "[UPDATE_ME: Add newest validated result and manuscript/preprint status.]"
+      ]
+    },
+    {
+      "theme": "Spatial Oncology",
+      "title": "Spatial Profiling of Low-Grade CNS Tumors",
+      "period": "PhD, ongoing",
+      "status": "DAC update: July 2025",
+      "summary": "This project maps cellular composition and architecture in low-grade CNS tumors to test hypotheses about spatial niches, histology-linked developmental origins, and dysregulated local signaling.",
+      "methods": [
+        "Xenium-based data processing and cell typing.",
+        "Spatial architecture analysis across tumor subtypes.",
+        "Integration of transcriptionally defined niches with histopathology readouts."
+      ],
+      "highlights": [
+        "Detected tumor-type-specific differences in cellular composition.",
+        "Found variation in local spatial structure across histologies.",
+        "[UPDATE_ME: Add newest figures, conference abstract, and data-release plans.]"
+      ]
+    }
+  ],
+  "selected_work": [
+    {
+      "title": "Machine-learning tumor type classifier for molecular pathology support",
+      "type": "Computational pipeline / translational implementation",
+      "venue": "Memorial Sloan Kettering Cancer Center",
+      "year": "2018-2020",
+      "note": "Contributed to development and deployment of a genomics-based classifier used to support prospective pathology sign-out decisions."
+    },
+    {
+      "title": "Tracking tumour evolution in glioma through CSF liquid biopsy",
+      "type": "Publication contribution",
+      "venue": "Nature",
+      "year": "2019",
+      "note": "Supported data expansion and analysis emphasizing mutational concordance of CSF cfDNA with tumor tissue for longitudinal disease monitoring."
+    },
+    {
+      "title": "Interactive calculator for phase I trial operating characteristics",
+      "type": "Publication / software",
+      "venue": "Contemporary Clinical Trials Communications",
+      "year": "2018",
+      "note": "Co-developed computational tools to estimate dosing-related operating characteristics for standard 3+3 trial designs."
+    },
+    {
+      "title": "Recent outputs",
+      "type": "Placeholder",
+      "venue": "PhD period",
+      "year": "2023-2026",
+      "note": "[UPDATE_ME: Add recent publications, preprints, posters, and invited talks since CV 2023.]"
+    }
+  ],
+  "timeline": [
+    {
+      "period": "Early motivation",
+      "title": "Clinical urgency and translational intent",
+      "description": "Personal and clinical exposure to oncology highlighted unmet needs in difficult-to-treat cancers and shaped a physician-scientist trajectory focused on improving treatment options."
+    },
+    {
+      "period": "Undergraduate + early research",
+      "title": "Biology + computation foundation",
+      "description": "Built core training across biology and computer science while pursuing early bioinformatics, clinical trial methods, and cancer genomics projects."
+    },
+    {
+      "period": "MSK phase",
+      "title": "Translational computational oncology",
+      "description": "Worked on multi-omic analyses, machine-learning diagnostics, and liquid-biopsy initiatives with direct relevance to clinical molecular workflows."
+    },
+    {
+      "period": "Current PhD phase",
+      "title": "Mechanistic genomics and spatial tumor biology",
+      "description": "Developing rigorous methods to interrogate structural variant insertion mechanisms and spatially resolved tumor ecosystems in CNS malignancies."
+    },
+    {
+      "period": "Next",
+      "title": "Physician-scientist development",
+      "description": "[UPDATE_ME: Add current thesis milestone target, expected graduation window, and planned residency/research direction.]"
+    }
+  ],
+  "cv": {
+    "label": "Curriculum Vitae (PDF)",
+    "note": "This CV is from January 2023 and is provided as an archival snapshot.",
+    "updated": "January 2023",
+    "path": "assets/docs/Youyun_Zheng_CV_S23.pdf"
+  },
+  "contact_links": [
+    {
+      "label": "Email",
+      "href": "mailto:youyunzheng@hms.harvard.edu"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/youyun-peter-zheng-970777106/"
+    },
+    {
+      "label": "GitHub [UPDATE_ME]",
+      "href": "https://github.com/UPDATE_ME"
+    },
+    {
+      "label": "X [UPDATE_ME]",
+      "href": "https://x.com/UPDATE_ME"
+    }
+  ],
+  "last_updated": "February 18, 2026"
+}
