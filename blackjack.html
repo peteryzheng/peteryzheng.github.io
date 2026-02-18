@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackjack | Youyun Zheng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="blackjack.css">
+</head>
+<body>
+  <main class="table-wrap">
+    <header class="table-head">
+      <a class="back-link" href="index.html">Back to site</a>
+      <h1>Blackjack</h1>
+      <p>Simple single-player game versus dealer.</p>
+    </header>
+
+    <section class="hud">
+      <p><span>Balance</span><strong id="balance">$500</strong></p>
+      <label for="bet-input">Bet</label>
+      <input id="bet-input" type="number" min="5" step="5" value="25">
+      <p><span>Round Bet</span><strong id="round-bet">$0</strong></p>
+    </section>
+
+    <section class="hands">
+      <article class="hand-block">
+        <h2>Dealer <span id="dealer-total" class="total"></span></h2>
+        <div id="dealer-cards" class="cards"></div>
+      </article>
+
+      <article class="hand-block">
+        <h2>You <span id="player-total" class="total"></span></h2>
+        <div id="player-cards" class="cards"></div>
+      </article>
+    </section>
+
+    <section class="controls">
+      <button id="deal-btn" type="button">Deal</button>
+      <button id="hit-btn" type="button">Hit</button>
+      <button id="stand-btn" type="button">Stand</button>
+      <button id="restart-btn" type="button">Restart Bank</button>
+    </section>
+
+    <p id="status" class="status">Set your bet and press Deal.</p>
+  </main>
+
+  <script src="blackjack.js"></script>
+</body>
+</html>
