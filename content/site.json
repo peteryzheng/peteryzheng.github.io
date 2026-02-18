@@ -4,6 +4,10 @@
     "role": "MD/PhD Student | Computational Oncology",
     "tagline": "Building translational cancer genomics tools that connect mechanistic discovery to clinical decision-making.",
     "summary": "I work at the intersection of cancer biology, genomics, and computation. My long-term goal is to practice as a physician-scientist in academic oncology while developing methods that improve diagnosis, treatment selection, and patient outcomes.",
+    "headshot": {
+      "src": "assets/images/headshot.jpg",
+      "alt": "Headshot of Youyun Zheng"
+    },
     "quick_links": [
       {
         "label": "Email",

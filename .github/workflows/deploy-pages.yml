@@ -29,10 +29,11 @@ jobs:
 
       - name: Build deploy artifact
         run: |
-          mkdir -p _site/content _site/assets/docs
+          mkdir -p _site/content _site/assets/docs _site/assets/images
           cp index.html styles.css main.js _site/
           cp content/site.json _site/content/site.json
           cp assets/docs/Youyun_Zheng_CV_S23.pdf _site/assets/docs/Youyun_Zheng_CV_S23.pdf
+          cp assets/images/headshot.jpg _site/assets/images/headshot.jpg
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

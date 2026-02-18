@@ -131,6 +131,17 @@ main {
   padding-top: clamp(1.6rem, 3vw, 2.4rem);
 }
 
+.hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
+  align-items: center;
+  gap: clamp(1rem, 2.6vw, 2rem);
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
 .hero h1 {
   margin: 0.4rem 0 0;
   max-width: 16ch;
@@ -151,6 +162,25 @@ main {
   margin: 1rem 0 0;
   max-width: 68ch;
   color: var(--text-1);
+}
+
+.hero-photo-wrap {
+  margin: 0;
+  justify-self: end;
+  width: min(100%, 320px);
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  padding: 0.38rem;
+  background: linear-gradient(145deg, rgba(78, 126, 240, 0.3), rgba(73, 193, 171, 0.24));
+}
+
+.hero-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  object-fit: cover;
+  box-shadow: 0 18px 40px rgba(2, 7, 16, 0.45);
 }
 
 .eyebrow {
@@ -361,6 +391,15 @@ main {
 
   body.nav-open .site-nav {
     display: flex;
+  }
+
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-photo-wrap {
+    justify-self: start;
+    width: min(70vw, 280px);
   }
 }
 

@@ -18,6 +18,20 @@ function setText(id, value) {
   }
 }
 
+function renderHeroPhoto(headshot) {
+  const image = document.getElementById("hero-photo");
+  if (!image || !headshot) {
+    return;
+  }
+
+  if (headshot.src) {
+    image.src = headshot.src;
+  }
+  if (headshot.alt) {
+    image.alt = headshot.alt;
+  }
+}
+
 function renderChipLinks(containerId, links) {
   const container = document.getElementById(containerId);
   if (!container) {
@@ -219,6 +233,7 @@ async function init() {
     setText("hero-name", data.profile.name);
     setText("hero-tagline", data.profile.tagline);
     setText("hero-summary", data.profile.summary);
+    renderHeroPhoto(data.profile.headshot);
     setText("last-updated", data.last_updated);
 
     renderChipLinks("hero-links", data.profile.quick_links);
