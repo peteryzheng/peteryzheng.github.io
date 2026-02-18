@@ -1,4 +1,7 @@
 const NAV_ACTIVE_CLASS = "is-active";
+const THEME_STORAGE_KEY = "site-theme";
+const THEME_DARK = "dark";
+const THEME_LIGHT = "light";
 
 function createNode(tag, className, text) {
   const node = document.createElement(tag);
@@ -16,6 +19,65 @@ function setText(id, value) {
   if (node) {
     node.textContent = value || "";
   }
+}
+
+function getSavedTheme() {
+  try {
+    return localStorage.getItem(THEME_STORAGE_KEY);
+  } catch (error) {
+    return null;
+  }
+}
+
+function saveTheme(theme) {
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch (error) {
+    // Ignore storage failures (private mode, disabled storage, etc.).
+  }
+}
+
+function getInitialTheme() {
+  const savedTheme = getSavedTheme();
+  if (savedTheme === THEME_DARK || savedTheme === THEME_LIGHT) {
+    return savedTheme;
+  }
+  const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+  return prefersLight ? THEME_LIGHT : THEME_DARK;
+}
+
+function applyTheme(theme) {
+  const root = document.documentElement;
+  root.setAttribute("data-theme", theme);
+
+  const toggle = document.getElementById("theme-toggle");
+  if (!toggle) {
+    return;
+  }
+
+  const isLight = theme === THEME_LIGHT;
+  toggle.textContent = isLight ? "Light" : "Dark";
+  toggle.setAttribute("aria-pressed", String(isLight));
+  toggle.setAttribute(
+    "aria-label",
+    isLight ? "Switch to dark mode" : "Switch to light mode"
+  );
+}
+
+function wireThemeToggle() {
+  applyTheme(getInitialTheme());
+
+  const toggle = document.getElementById("theme-toggle");
+  if (!toggle) {
+    return;
+  }
+
+  toggle.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const nextTheme = currentTheme === THEME_LIGHT ? THEME_DARK : THEME_LIGHT;
+    applyTheme(nextTheme);
+    saveTheme(nextTheme);
+  });
 }
 
 function renderHeroPhoto(headshot) {
@@ -189,6 +251,8 @@ function wireMobileNav() {
 
 async function init() {
   try {
+    wireThemeToggle();
+
     const response = await fetch("content/site.json", { cache: "no-store" });
     const data = await response.json();
 
