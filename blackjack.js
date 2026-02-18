@@ -18,12 +18,15 @@ const RANKS = [
 const STARTING_BALANCE = 500;
 const TARGET_SCORE = 25;
 const DEALER_STAND_SCORE = 21;
+const WIN_CAP = STARTING_BALANCE * 2;
+const EJECTION_DELAY_MS = 2100;
 let balance = STARTING_BALANCE;
 let currentBet = 0;
 let playerHand = [];
 let dealerHand = [];
 let hideDealerHole = false;
 let gameState = "idle";
+let ejectionTimer = null;
 
 const balanceEl = document.getElementById("balance");
 const roundBetEl = document.getElementById("round-bet");
@@ -37,6 +40,7 @@ const dealBtn = document.getElementById("deal-btn");
 const hitBtn = document.getElementById("hit-btn");
 const standBtn = document.getElementById("stand-btn");
 const restartBtn = document.getElementById("restart-btn");
+const ejectMessageEl = document.getElementById("eject-message");
 
 function drawCard() {
   const rankMeta = RANKS[Math.floor(Math.random() * RANKS.length)];
@@ -96,10 +100,12 @@ function renderCards(container, hand, hideHoleCard) {
 
 function updateControls() {
   const inRound = gameState === "player_turn";
-  dealBtn.disabled = inRound || balance <= 0;
-  hitBtn.disabled = !inRound;
-  standBtn.disabled = !inRound;
-  betInputEl.disabled = inRound;
+  const isEjected = gameState === "ejected";
+  dealBtn.disabled = isEjected || inRound || balance <= 0;
+  hitBtn.disabled = isEjected || !inRound;
+  standBtn.disabled = isEjected || !inRound;
+  betInputEl.disabled = isEjected || inRound;
+  restartBtn.disabled = isEjected;
 }
 
 function render() {
@@ -135,8 +141,44 @@ function settleRound(result, message) {
   render();
 
   if (balance <= 0) {
-    setStatus("You are out of chips. Press Restart Bank.", "lose");
+    triggerEjection("bankrupt");
+    return;
   }
+
+  if (balance >= WIN_CAP) {
+    triggerEjection("winner");
+  }
+}
+
+function triggerEjection(mode) {
+  if (gameState === "ejected") {
+    return;
+  }
+
+  const isBankrupt = mode === "bankrupt";
+  const message = isBankrupt
+    ? "Bankroll depleted. Casino meltdown. Redirecting..."
+    : "Casino rule triggered: bankroll doubled. Security escort in progress...";
+
+  gameState = "ejected";
+  setStatus(message, isBankrupt ? "lose" : "win");
+
+  if (ejectMessageEl) {
+    ejectMessageEl.textContent = isBankrupt
+      ? "BANKROLL AT $0. TABLE CLOSED."
+      : "BANKROLL LIMIT HIT. YOU ARE ESCORTED OUT.";
+  }
+
+  document.body.classList.remove("ejecting-bankrupt", "ejecting-win");
+  document.body.classList.add("ejecting", isBankrupt ? "ejecting-bankrupt" : "ejecting-win");
+  render();
+
+  if (ejectionTimer) {
+    clearTimeout(ejectionTimer);
+  }
+  ejectionTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, EJECTION_DELAY_MS);
 }
 
 function dealerTurn() {
@@ -223,6 +265,9 @@ function stand() {
 }
 
 function restartBank() {
+  if (gameState === "ejected") {
+    return;
+  }
   balance = STARTING_BALANCE;
   currentBet = 0;
   playerHand = [];
@@ -233,9 +278,43 @@ function restartBank() {
   render();
 }
 
+function handleKeyShortcuts(event) {
+  if (gameState === "ejected") {
+    return;
+  }
+
+  const target = event.target;
+  const isTyping =
+    target &&
+    (target.tagName === "INPUT" ||
+      target.tagName === "TEXTAREA" ||
+      target.isContentEditable);
+
+  if (isTyping && event.key !== "Enter") {
+    return;
+  }
+
+  const key = event.key.toLowerCase();
+  if (key === "d" || (key === "enter" && document.activeElement === betInputEl)) {
+    event.preventDefault();
+    startRound();
+    return;
+  }
+  if (key === "h") {
+    event.preventDefault();
+    hit();
+    return;
+  }
+  if (key === "s") {
+    event.preventDefault();
+    stand();
+  }
+}
+
 dealBtn.addEventListener("click", startRound);
 hitBtn.addEventListener("click", hit);
 standBtn.addEventListener("click", stand);
 restartBtn.addEventListener("click", restartBank);
+window.addEventListener("keydown", handleKeyShortcuts);
 
 render();

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blackjack 25 | Youyun Zheng</title>
+  <title>Blackjack 25 | Youyun (Peter) Zheng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,6 +15,7 @@
       <a class="back-link" href="index.html">Back to site</a>
       <h1>Blackjack 25</h1>
       <p>Simple single-player game. Closest to 25 without busting wins.</p>
+      <p class="shortcut-hint">Shortcuts: <kbd>D</kbd> deal, <kbd>H</kbd> hit, <kbd>S</kbd> stand.</p>
     </header>
 
     <section class="hud">
@@ -45,6 +46,10 @@
 
     <p id="status" class="status">Set your bet and press Deal.</p>
   </main>
+
+  <div id="eject-overlay" class="eject-overlay" aria-live="polite">
+    <div id="eject-message" class="eject-message"></div>
+  </div>
 
   <script src="blackjack.js"></script>
 </body>
