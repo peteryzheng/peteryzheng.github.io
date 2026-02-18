@@ -209,6 +209,11 @@ button:disabled {
   color: #08172a;
 }
 
+#allin-btn {
+  background: linear-gradient(120deg, #f0ba58, #d35f87);
+  color: #221102;
+}
+
 .status {
   margin: 0.95rem 0 0;
   color: var(--text-1);

@@ -10,10 +10,6 @@
     },
     "quick_links": [
       {
-        "label": "Email",
-        "href": "mailto:youyunzheng@hms.harvard.edu"
-      },
-      {
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/in/youyun-peter-zheng-970777106/"
       },
@@ -50,8 +46,7 @@
       ],
       "highlights": [
         "Defined configuration categories with detectable enrichments by SV subtype.",
-        "Observed imperfect yet informative template matches in multiple contexts.",
-        "[UPDATE_ME: Add newest validated result and manuscript/preprint status.]"
+        "Observed imperfect yet informative template matches in multiple contexts."
       ]
     },
     {
@@ -67,39 +62,8 @@
       ],
       "highlights": [
         "Detected tumor-type-specific differences in cellular composition.",
-        "Found variation in local spatial structure across histologies.",
-        "[UPDATE_ME: Add newest figures, conference abstract, and data-release plans.]"
+        "Found variation in local spatial structure across histologies."
       ]
-    }
-  ],
-  "selected_work": [
-    {
-      "title": "Machine-learning tumor type classifier for molecular pathology support",
-      "type": "Computational pipeline / translational implementation",
-      "venue": "Memorial Sloan Kettering Cancer Center",
-      "year": "2018-2020",
-      "note": "Contributed to development and deployment of a genomics-based classifier used to support prospective pathology sign-out decisions."
-    },
-    {
-      "title": "Tracking tumour evolution in glioma through CSF liquid biopsy",
-      "type": "Publication contribution",
-      "venue": "Nature",
-      "year": "2019",
-      "note": "Supported data expansion and analysis emphasizing mutational concordance of CSF cfDNA with tumor tissue for longitudinal disease monitoring."
-    },
-    {
-      "title": "Interactive calculator for phase I trial operating characteristics",
-      "type": "Publication / software",
-      "venue": "Contemporary Clinical Trials Communications",
-      "year": "2018",
-      "note": "Co-developed computational tools to estimate dosing-related operating characteristics for standard 3+3 trial designs."
-    },
-    {
-      "title": "Recent outputs",
-      "type": "Placeholder",
-      "venue": "PhD period",
-      "year": "2023-2026",
-      "note": "[UPDATE_ME: Add recent publications, preprints, posters, and invited talks since CV 2023.]"
     }
   ],
   "timeline": [
@@ -126,7 +90,7 @@
     {
       "period": "Next",
       "title": "Physician-scientist development",
-      "description": "[UPDATE_ME: Add current thesis milestone target, expected graduation window, and planned residency/research direction.]"
+      "description": "Focused on advancing translational computational oncology and preparing for the next stage of physician-scientist training."
     }
   ],
   "cv": {
@@ -135,27 +99,5 @@
     "updated": "January 2023",
     "path": "assets/docs/Youyun_Zheng_CV_S23.pdf"
   },
-  "contact_links": [
-    {
-      "label": "Email",
-      "href": "mailto:youyunzheng@hms.harvard.edu"
-    },
-      {
-        "label": "LinkedIn",
-        "href": "https://www.linkedin.com/in/youyun-peter-zheng-970777106/"
-      },
-      {
-        "label": "Google Scholar",
-        "href": "https://scholar.google.com/citations?user=OiNwcL0AAAAJ&hl=en"
-      },
-      {
-        "label": "GitHub",
-        "href": "https://github.com/peteryzheng"
-      },
-      {
-        "label": "X",
-        "href": "https://x.com/zheng_youyun"
-      }
-  ],
   "last_updated": "February 18, 2026"
 }

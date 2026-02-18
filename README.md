@@ -17,10 +17,7 @@ Then open `http://localhost:8000`.
 - Styling/theme: `styles.css`
 - Rendering/interaction logic: `main.js`
 
-Search for `[UPDATE_ME]` in `content/site.json` to fill:
-- GitHub and X links
-- Post-2023 milestones/publications
-- Current thesis/residency trajectory details
+For pending profile-content tasks (milestones, publications, training trajectory), use the internal backlog in `AGENTS.md`.
 
 ## Deployment
 

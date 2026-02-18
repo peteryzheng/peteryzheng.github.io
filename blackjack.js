@@ -37,6 +37,7 @@ const dealerTotalEl = document.getElementById("dealer-total");
 const playerTotalEl = document.getElementById("player-total");
 const betInputEl = document.getElementById("bet-input");
 const dealBtn = document.getElementById("deal-btn");
+const allInBtn = document.getElementById("allin-btn");
 const hitBtn = document.getElementById("hit-btn");
 const standBtn = document.getElementById("stand-btn");
 const restartBtn = document.getElementById("restart-btn");
@@ -101,7 +102,9 @@ function renderCards(container, hand, hideHoleCard) {
 function updateControls() {
   const inRound = gameState === "player_turn";
   const isEjected = gameState === "ejected";
-  dealBtn.disabled = isEjected || inRound || balance <= 0;
+  const canBet = !isEjected && !inRound && balance > 0;
+  allInBtn.disabled = !canBet;
+  dealBtn.disabled = !canBet;
   hitBtn.disabled = isEjected || !inRound;
   standBtn.disabled = isEjected || !inRound;
   betInputEl.disabled = isEjected || inRound;
@@ -239,6 +242,25 @@ function startRound() {
   render();
 }
 
+function allIn() {
+  if (gameState === "player_turn" || gameState === "ejected") {
+    return;
+  }
+  if (balance <= 0) {
+    setStatus("No bankroll left.");
+    return;
+  }
+
+  const allInBet = Math.floor(balance);
+  betInputEl.value = String(allInBet);
+
+  if (allInBet < 5) {
+    setStatus("All in set, but minimum bet is $5.");
+    return;
+  }
+  setStatus(`All in set to ${currency(allInBet)}. Press Deal.`);
+}
+
 function hit() {
   if (gameState !== "player_turn") {
     return;
@@ -300,6 +322,11 @@ function handleKeyShortcuts(event) {
     startRound();
     return;
   }
+  if (key === "a") {
+    event.preventDefault();
+    allIn();
+    return;
+  }
   if (key === "h") {
     event.preventDefault();
     hit();
@@ -311,6 +338,7 @@ function handleKeyShortcuts(event) {
   }
 }
 
+allInBtn.addEventListener("click", allIn);
 dealBtn.addEventListener("click", startRound);
 hitBtn.addEventListener("click", hit);
 standBtn.addEventListener("click", stand);

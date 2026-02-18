@@ -110,27 +110,6 @@ function renderProjects(projects) {
   });
 }
 
-function renderWork(workItems) {
-  const list = document.getElementById("work-list");
-  if (!list) {
-    return;
-  }
-  list.innerHTML = "";
-
-  workItems.forEach((item) => {
-    const block = createNode("article", "work-item");
-    const heading = createNode(
-      "h3",
-      null,
-      `${item.title} (${item.year})`
-    );
-    block.appendChild(heading);
-    block.appendChild(createNode("p", null, `${item.type} | ${item.venue}`));
-    block.appendChild(createNode("p", null, item.note));
-    list.appendChild(block);
-  });
-}
-
 function renderCv(cv) {
   setText("cv-label", cv.label);
   setText("cv-note", cv.note);
@@ -223,9 +202,7 @@ async function init() {
     renderChipLinks("hero-links", data.profile.quick_links);
     renderResearchFocus(data.research_focus);
     renderProjects(data.research_projects);
-    renderWork(data.selected_work);
     renderCv(data.cv);
-    renderChipLinks("contact-links", data.contact_links);
 
     applySectionObservers();
     applyRevealObserver();
