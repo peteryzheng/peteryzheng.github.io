@@ -180,6 +180,19 @@ main {
   background: linear-gradient(145deg, rgba(78, 126, 240, 0.3), rgba(73, 193, 171, 0.24));
 }
 
+.hero-photo-link {
+  display: block;
+  border-radius: 14px;
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.hero-photo-link:hover,
+.hero-photo-link:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  outline: none;
+}
+
 .hero-photo {
   display: block;
   width: 100%;
