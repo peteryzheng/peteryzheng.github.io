@@ -46,6 +46,7 @@ Git history uses short, imperative commit subjects (for example: `style upgrade`
 ## Security & Content Notes
 - Do not expose private source documents in deployed artifacts unless explicitly approved.
 - If adding assets, ensure `.github/workflows/deploy-pages.yml` includes only intended public files.
+- When adding/removing public pages or changing URLs, update all of: `sitemap.xml`, `robots.txt` (sitemap line), canonical tags in HTML, and `.github/workflows/deploy-pages.yml` artifact copy list.
 
 ## Internal Content Backlog
 The following items were intentionally removed from public website copy and should be tracked here until finalized:
