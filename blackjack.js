@@ -27,6 +27,7 @@ let dealerHand = [];
 let hideDealerHole = false;
 let gameState = "idle";
 let ejectionTimer = null;
+let currentDeck = [];
 
 const balanceEl = document.getElementById("balance");
 const roundBetEl = document.getElementById("round-bet");
@@ -43,10 +44,29 @@ const standBtn = document.getElementById("stand-btn");
 const restartBtn = document.getElementById("restart-btn");
 const ejectMessageEl = document.getElementById("eject-message");
 
+function createDeck() {
+  const deck = [];
+  for (const suit of SUITS) {
+    for (const rankMeta of RANKS) {
+      deck.push({ ...rankMeta, suit });
+    }
+  }
+  return deck;
+}
+
+function shuffleDeck(deck) {
+  for (let i = deck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+  }
+}
+
 function drawCard() {
-  const rankMeta = RANKS[Math.floor(Math.random() * RANKS.length)];
-  const suit = SUITS[Math.floor(Math.random() * SUITS.length)];
-  return { ...rankMeta, suit };
+  if (currentDeck.length === 0) {
+    currentDeck = createDeck();
+    shuffleDeck(currentDeck);
+  }
+  return currentDeck.pop();
 }
 
 function cardLabel(card) {
@@ -237,6 +257,8 @@ function startRound() {
 
   currentBet = bet;
   balance -= currentBet;
+  currentDeck = createDeck();
+  shuffleDeck(currentDeck);
   playerHand = [drawCard(), drawCard()];
   dealerHand = [drawCard(), drawCard()];
   hideDealerHole = true;
